@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
+import {RegionContext} from "../context/RegionContext";
 
-const RegionSelector = ({ regions,onRegionSelect  }) => {
 
-    const [selectedRegion, setSelectedRegion] = useState(null);
+const RegionSelector = () => {
 
-    const handleSelect = (region) => {
-        setSelectedRegion(region);
-        if(onRegionSelect) {
-            onRegionSelect(region);
-        }
-    };
-
+    const { regions, selectedRegion, handleRegionSelect } = useContext(RegionContext);
 
     return (
-        <div className="dropdown">
+        <div className="dropdown nav-link px-2">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="regionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             {selectedRegion ? selectedRegion.name : '選擇地區'}
             </button>
             <ul className="dropdown-menu" aria-labelledby="regionDropdown">
                 {regions.map((region, index) => (
-                    <li key={index} onClick={() => handleSelect(region)}>
+                    <li key={region.id} onClick={() => handleRegionSelect(region)}>
                         <a className={`dropdown-item ${selectedRegion && region.name === selectedRegion.name ? 'active' : ''}`} href="#">
                             {region.name}
                         </a>
