@@ -7,6 +7,7 @@ const RegionSelector = () => {
     const { regions, selectedRegion, handleRegionSelect } = useContext(RegionContext);
 
     return (
+        <>
         <div className="dropdown nav-link px-2">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="regionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             {selectedRegion ? selectedRegion.name : '選擇地區'}
@@ -20,7 +21,10 @@ const RegionSelector = () => {
                     </li>
                 ))}
             </ul>
+            
         </div>
+        
+        </>
     );
 };
 
